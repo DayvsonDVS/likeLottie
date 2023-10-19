@@ -1,11 +1,13 @@
 <template>
-  <div ref="element" class="like-animation" />
+  <div ref="element" class="dance-dragon" />
 </template>
 
 <script setup lang="ts">
 import lottie from 'lottie-web'
+
 const element = ref<HTMLElement>()
-const isLike = ref(false)
+const isPlay = ref(0)
+
 
 onMounted(() => {
   const lottieAnimation = lottie.loadAnimation({
@@ -13,30 +15,23 @@ onMounted(() => {
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: '/json/like.json',
+    path: '/json/Dragon.json',
   })
 
-  lottieAnimation.addEventListener('DOMLoaded', () => {
-    const hoverEl = element.value?.firstElementChild?.lastElementChild!
-
-    hoverEl.addEventListener('click', () => {
+  document.addEventListener('keypress', () => {
+    if (lottieAnimation.isPaused) {
+      lottieAnimation.setSpeed(1)
       lottieAnimation.play()
       lottieAnimation.resetSegments(true)
-    })
-
+    }
   })
+
 })
 
 </script>
 
 <style lang="scss">
-.like-animation {
+.dance-dragon {
   width: 100px;
-
-  svg {
-    g {
-      cursor: pointer;
-    }
-  }
 }
 </style>

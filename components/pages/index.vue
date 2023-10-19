@@ -1,6 +1,8 @@
 <template>
   <div class="home-page">
     <LikeAnimation />
+    <!-- <DanceDragon /> -->
+    <HandKeyboard />
   </div>
 </template>
 
